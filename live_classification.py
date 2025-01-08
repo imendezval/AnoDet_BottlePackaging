@@ -8,7 +8,7 @@ cam_IP = ""
 model = models.efficientnet_v2_s(weights=None)
 num_classes = 4
 model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
-model.load_state_dict(torch.load("checkpoint_epoch_5.pth"))
+model.load_state_dict(torch.load("models/model6_Unfreeze_6_7_Start/model6.pth"))
 model.eval()
 
 
@@ -19,12 +19,17 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
+
+mask = cv2.imread("imgs/bin_mask_opt.jpg")
+roi = [525, 215, 150, 400]
 def preprocess_frame(frame):
     """
-    Preprocess the frame to match the training transformations.
+    Preprocess the frame to match training transformations
     """
-    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
-    pil_frame = transforms.functional.to_pil_image(rgb_frame)  # Convert to PIL Image
+    img_cropped = frame[roi[1]:roi[1]+roi[3], roi[0]:roi[0]+roi[2]]
+    masked_img = cv2.bitwise_and(img_cropped, mask)
+
+    pil_frame = transforms.functional.to_pil_image(masked_img)  # Convert to PIL Image
     transformed_frame = transform(pil_frame)
     return transformed_frame.unsqueeze(0)
 
