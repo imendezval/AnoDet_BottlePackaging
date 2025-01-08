@@ -1,51 +1,96 @@
 asgiref==3.8.1
+asttokens==3.0.0
+attrs==24.3.0
+backcall==0.2.0
+beautifulsoup4==4.12.3
+bleach==6.2.0
+certifi==2024.12.14
+charset-normalizer==3.4.1
 colorama==0.4.6
-contourpy @ file:///C:/b/abs_f2u2o_8s9g/croot/contourpy_1732540071787/work
-cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+contourpy==1.3.1
+cycler==0.11.0
+decorator==5.1.1
 dedup==0.0.2
+defusedxml==0.7.1
 Django==5.1.4
+docopt==0.6.2
+executing==2.1.0
+fastjsonschema==2.21.1
 filelock==3.13.1
 fire==0.7.0
-fonttools @ file:///C:/b/abs_f47gnfqnx0/croot/fonttools_1713551644747/work
+fonttools=4.51.0
 fsspec==2024.2.0
+idna==3.10
 image==1.5.33
 imagededup==0.3.2
-ImageHash @ file:///C:/b/abs_5cw9y4odp1/croot/imagehash_1679418699403/work
+ImageHash==4.3.1
+ipython==8.12.3
+jedi==0.19.2
 Jinja2==3.1.3
 joblib==1.4.2
-kiwisolver @ file:///C:/b/abs_88mdhvtahm/croot/kiwisolver_1672387921783/work
+jsonschema==4.23.0
+jsonschema-specifications==2024.10.1
+jupyter_client==8.6.3
+jupyter_core==5.7.2
+jupyterlab_pygments==0.3.0
+kiwisolver==1.4.4
 MarkupSafe==2.1.5
 matplotlib==3.9.2
+matplotlib-inline==0.1.7
+mistune==3.1.0
 mkl-service==2.4.0
-mkl_fft @ file:///C:/Users/dev-admin/mkl/mkl_fft_1730823082242/work
-mkl_random @ file:///C:/Users/dev-admin/mkl/mkl_random_1730822522280/work
+mkl_fft==1.3.11
+mkl_random==1.2.8
 mpmath==1.3.0
+nbclient==0.10.2
+nbconvert==7.16.5
+nbformat==5.10.4
 networkx==3.2.1
-numpy @ file:///C:/b/abs_c1ywpu18ar/croot/numpy_and_numpy_base_1708638681471/work/dist/numpy-1.26.4-cp310-cp310-win_amd64.whl#sha256=ebb5aa2b36d8afa5ec3231c19e5a1fc75b6d85e7db483f0fb9e77dad58469977
+numpy==1.26.4
 opencv-python==4.10.0
 opencv-python-headless==4.10.0
-packaging @ file:///C:/b/abs_c3vlh0z4jw/croot/packaging_1720101866539/work
-pillow @ file:///C:/b/abs_2cm0qc1vxk/croot/pillow_1731594717982/work
+packaging==24.1
+pandocfilters==1.5.1
+parso==0.8.4
+pickleshare==0.7.5
+pillow==11.0.0
+pipreqs==0.5.0
+platformdirs==4.3.6
 ply==3.11
-pyparsing @ file:///C:/b/abs_40z8gyj9wi/croot/pyparsing_1731445739241/work
+prompt_toolkit==3.0.48
+pure_eval==0.2.3
+Pygments==2.19.1
+pyparsing==3.2.0
 PyQt5==5.15.10
-PyQt5-sip @ file:///C:/b/abs_c0pi2mimq3/croot/pyqt-split_1698769125270/work/pyqt_sip
-python-dateutil @ file:///C:/b/abs_3au_koqnbs/croot/python-dateutil_1716495777160/work
-PyWavelets @ file:///C:/b/abs_95ujr8_xu1/croot/pywavelets_1725657962149/work
+PyQt5-sip==12.13.0
+PyWavelets==1.7.0
+pywin32==308
+pyzmq==26.2.0
+referencing==0.35.1
+requests==2.32.3
+rpds-py==0.22.3
 scikit-learn==1.6.0
-scipy @ file:///C:/Users/dev-admin/cr_scipy-release/scipy_1731623378890/work/dist/scipy-1.14.1-cp310-cp310-win_amd64.whl#sha256=b0806979689db0e35099d60654c8efbf9c4feb9f01011de170330d8a2d138e5d
-sip @ file:///C:/b/abs_edevan3fce/croot/sip_1698675983372/work
-six @ file:///tmp/build/80754af9/six_1644875935023/work
+scipy==1.14.1
+sip==6.7.12
+six==1.16.0
+soupsieve==2.6
 sqlparse==0.5.3
+stack-data==0.6.3
 sympy==1.13.1
 termcolor==2.5.0
 threadpoolctl==3.5.0
-tomli @ file:///C:/Windows/TEMP/abs_ac109f85-a7b3-4b4d-bcfd-52622eceddf0hy332ojo/croots/recipe/tomli_1657175513137/work
+tinycss2==1.4.0
+tomli==2.0.1
 torch==2.5.1+cu118
 torchaudio==2.5.1+cu118
 torchvision==0.20.1+cu118
-tornado @ file:///C:/b/abs_7cyu943ybx/croot/tornado_1733960510898/work
+tornado==6.4.2
 tqdm==4.67.1
+traitlets==5.14.3
 typing_extensions==4.9.0
 tzdata==2024.2
-unicodedata2 @ file:///C:/b/abs_b6apldlg7y/croot/unicodedata2_1713212998255/work
+unicodedata2==15.1.0
+urllib3==2.3.0
+wcwidth==0.2.13
+webencodings==0.5.1
+yarg==0.1.9
