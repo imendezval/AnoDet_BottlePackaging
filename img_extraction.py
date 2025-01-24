@@ -222,19 +222,19 @@ def prep_imgs(input_folder, output_folder):
     return masked_img
 
 
-"""
-input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/sampled/no_deckel"  # Replace with your input folder path
-output_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/masked/no_deckel"  # Replace with your output folder path
-prep_imgs(input_folder,output_folder)
 
+input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/eval"  # Replace with your input folder path
+output_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/eval/masked"  # Replace with your output folder path
+prep_imgs(input_folder,output_folder)
+"""
 input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/cut/no_deckel"  # Replace with your input folder path
 output_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/sampled/no_deckel"  # Replace with your output folder path
 extract_frames(input_folder, output_folder, fps=10)
 
-"""
+
 input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/masked/fallen_before"
 remove_dups_pixels_threshold(input_folder)
-
+"""
 
 
 
