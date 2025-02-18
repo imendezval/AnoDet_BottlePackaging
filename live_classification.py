@@ -32,9 +32,9 @@ scaled_roi = [
     int(original_roi[2] * (new_width / original_width)),  # width = 75
     int(original_roi[3] * (new_height / original_height))  # height = 204.4
 ]
+
 B = 262
 A = 109
-
 
 mask = cv2.imread("imgs/bin_mask_opt.jpg")
 mask_resized = cv2.resize(mask, (scaled_roi[2], scaled_roi[3]))
