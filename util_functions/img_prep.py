@@ -1,8 +1,6 @@
 import cv2
 import os
 from PIL import Image
-from sklearn.cluster import DBSCAN
-import imagehash
 import numpy as np
 import shutil
 
@@ -137,53 +135,3 @@ extract_frames(input_folder, output_folder, fps=10)
 
 input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/sampled/no_anomaly/rect_crop"
 remove_dups(input_folder)
-
-
-
-
-
-
-    # Diff 25:
-    # threshold = 0.5   ->  3284
-    # threshold = 0.2   ->  2166
-    # threshold = 0.17  ->  1346   TM
-    # threshold = 0.15  ->  843    ++++ robot movement ingnored, many dups ignored 
-    # threshold = 0.13  ->  456    NE
-    # threshold = 0.12  ->  259    NE
-    # threshold = 0.1   ->  79
-    # threshold = 0.01  ->  0
-
-    # Higher diff, lower threshold - when bottle moves, only few pixels change a lot
-    # Diff 50:
-    # threshold = 0.2   ->  2477
-    # threshold = 0.15  ->  1198  +++++++ bands mean enough change, part of bottle ignored as change -> higher diff, higher thresh
-    # threshold = 0.13  ->  634
-    # threshold = 0.1   ->  165
-    # threshold = 0.05  ->  0
-
-    # Diff 80:
-    # threshold = 0.14  ->  1028
-    # threshold = 0.1   ->  195
-    # threshold = 0.05  ->  0
-
-    # Diff 100:
-    # threshold = 0.13  ->  719
-    
-    # Diff 150:
-    # threshold = 0.15  ->  1576
-    # threshold = 0.14  ->  1213
-    # threshold = 0.134 ->  1076
-    # threshold = 0.13  ->  845
-    # threshold = 0.1   ->  218
-
-    # Diff 250:            TOO HIGH
-    # threshold = 0.1   ->  3273  -> all images do not have enough pixels changing a lot
-    # threshold = 0.08  ->  1572
-    # threshold = 0.075 ->  1062  +++++++++
-    # threshold = 0.07  ->  799
-    # threshold = 0.05  ->  421
-
-    # Diff 10:
-    # threshold = 0.20  ->  1719
-    # threshold = 0.17  ->  985
-    # threshold = 0.15  ->  536
