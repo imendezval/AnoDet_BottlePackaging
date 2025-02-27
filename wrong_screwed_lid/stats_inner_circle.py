@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 import math
 import os
 import pandas as pd
@@ -107,7 +106,7 @@ def find_area(filename):
         print(f"smallest_ellipse_area {smallest_ellipse_area}")
         print(f"smallest_contour_area {smallest_contour_area}\n")
 
-"""
+
 data = []
 input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/sampled/no_anomaly/rect_crop/unique_imgs"
 for filename in os.listdir(input_folder):
@@ -149,3 +148,4 @@ find_area(file_name5)
 find_area(file_name6)
 find_area(file_name7)
 find_area(file_name8)
+"""

@@ -29,11 +29,11 @@ def crop_images(input_folder, output_folder, x, y, w, h):
         print(f'Cropped and saved: {filename}')
 
 if __name__ == "__main__":
-    input_folder = "C:/Users/Arian/OneDrive - Hochschule Heilbronn/data_seminararbeit/wrong_lid/sampled"
-    output_folder = "C:/Users/Arian/OneDrive - Hochschule Heilbronn/data_seminararbeit/wrong_lid/cropped"
+    input_folder = "imgs/sampled/no_anomaly/"
+    output_folder = "imgs/sampled/no_anomaly/rect_crop/"
     
     # Manually input the coordinates after using select_roi()
-    #coordinates = select_roi("C:/Users/Arian/OneDrive - Hochschule Heilbronn/data_seminararbeit/wrong_lid/sampled/nd_0000.jpg")
+    #coordinates = select_roi("imgs/sampled/wrong_lid/nd_0021.jpg")
     #print(coordinates)
-    x, y, w, h = 524, 555, 75, 65  # Replace with actual values
+    x, y, w, h = 600, 510, 60, 60  # Replace with actual values
     crop_images(input_folder, output_folder, x, y, w, h)
