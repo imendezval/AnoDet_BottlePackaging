@@ -60,57 +60,9 @@ def extract_frames(video_folder, output_folder, fps=24):
 
         cap.release()
         print(f"Finished processing {video_file}. Extracted {extracted_count} frames.")
-    
-
-def remove_dups_hash(folder_path):
-    files = sorted(os.listdir(folder_path))  # Sort files to ensure correct order
-    previous_hash = None  # To store the hash of the previous image
-    dup_num = 0
-    for file in files:
-        file_path = os.path.join(folder_path, file)
-        if os.path.isfile(file_path):
-            try:
-                # Open image and calculate perceptual hash
-                img = Image.open(file_path)
-                current_hash = imagehash.phash(img)
-
-                if current_hash == previous_hash:
-                    print(f"Removing duplicate: {file_path}")
-                    #os.remove(file_path)  # Remove duplicate
-                    dup_num +=1
-                else:
-                    previous_hash = current_hash  # Update previous hash
-            except Exception as e:
-                print(f"Error processing {file_path}: {e}")
-    print(dup_num)
 
 
-def remove_dups_pixels(folder_path):
-    seen_images = {}  # Dictionary to store unique image hashes
-    dup_num = 0
-    for filename in sorted(os.listdir(folder_path)):  # Sort files for consistent order
-        file_path = os.path.join(folder_path, filename)
-        if os.path.isfile(file_path):
-
-            # Open the image and convert to a NumPy array
-            img = Image.open(file_path).convert('RGB')
-            img_array = np.array(img)
-
-            # Create a hash based on pixel data
-            img_hash = hash(img_array.tobytes())
-
-            # Check if the hash is already seen
-            if img_hash in seen_images:
-                print(f"Removing duplicate: {file_path}")
-                #os.remove(file_path)
-                dup_num +=1
-            else:
-                seen_images[img_hash] = file_path
-
-    print(dup_num)
-
-
-def remove_dups_pixels_threshold(folder_path, threshold=0.01):
+def remove_dups(folder_path, threshold=0.01):
     non_dupe_folder = os.path.join(folder_path, "unique_imgs")
     os.makedirs(non_dupe_folder, exist_ok=True)
 
@@ -140,58 +92,6 @@ def remove_dups_pixels_threshold(folder_path, threshold=0.01):
             org_img.save(output_path)
             previous_image = current_array
             shutil.copy(file_path, non_dupe_folder)
-
-    print(dup_num)
-
-
-def remove_dups_dbscan(folder_path, diff_threshold = 25, cluster_size_threshold=500, **kwargs):
-
-    files = sorted(os.listdir(folder_path))
-    previous_grayscale = None
-    dup_num = 0
-    for filename in files:
-        file_path = os.path.join(folder_path, filename)
-        if os.path.isfile(file_path):
-            
-            current_image = cv2.imread(file_path)
-            current_graysacle = cv2.cvtColor(current_image, cv2.COLOR_BGR2GRAY)
-
-            if previous_grayscale is not None:
-                
-                diff = cv2.absdiff(current_graysacle, previous_grayscale)
-                binary_diff = diff > diff_threshold
-
-                y, x = np.where(binary_diff)
-                data = np.column_stack((x, y))
-
-                if data.size != 0:
-                    eps = kwargs.get("eps", 5)
-                    min_samples = kwargs.get("min_samples", 10)
-
-                    db = DBSCAN(eps=eps, min_samples=min_samples).fit(data)
-                    labels = db.labels_
-                    unique_labels = set(labels)  
-
-                    cluster_sizes = []
-                    for cluster in unique_labels:
-                        if cluster != -1:  # Ignore noise
-                            cluster_sizes.append(np.sum(labels == cluster))
-                    print(cluster_sizes)
-
-                    has_large_cluster = np.any(np.array(cluster_sizes) > cluster_size_threshold)  
-                    is_dupe = not has_large_cluster
-                else:
-                    is_dupe = True  
-                    print("No Data")       
-                
-                #print(f"{filename}: {is_dupe}")
-                if is_dupe:
-                    print(f"Removing still frame: {file_path}")
-                    #os.remove(file_path)
-                    dup_num += 1
-                    continue
-
-            previous_grayscale = current_graysacle
 
     print(dup_num)
 
@@ -236,7 +136,7 @@ extract_frames(input_folder, output_folder, fps=10)
 """
 
 input_folder = "C:/data/git/repo/Bottle_AnoDet/imgs/sampled/no_anomaly/rect_crop"
-remove_dups_pixels_threshold(input_folder)
+remove_dups(input_folder)
 
 
 
