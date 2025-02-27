@@ -56,6 +56,17 @@ criterion = nn.CrossEntropyLoss(weight=class_weights)
 
 
 def test(model, criterion, test_loader):
+    """
+    Function to perform the evaluation process, using the defined model and
+    criterion. Prints test loss, overall accuracy and class-wise accuracy for
+    samples of the test dataset.
+    Furthermore, displays ID of misclassified images and saves them.
+    
+    Parameters:
+    - model: The neural network model
+    - criterion: Function on which to evaluate model
+    - test_loader: Test data for evaluation
+    """
     print("# ### TEST")
     model.eval()
     test_loss = 0
@@ -90,7 +101,8 @@ def test(model, criterion, test_loader):
     print('-' * 25)
     for i, cls in enumerate(dataset.classes):
             print(f"Class {cls}: {class_correct[i] / class_total[i] * 100:.2f}% ({class_correct[i]}/{class_total[i]})")
-        
+
+    # Print ID of misclassified images and optionally save them
     for idx, (image, true_label, predicted_label) in enumerate(misclassified_images):
         print(f"Image {idx + 1}: True Label = {dataset.classes[true_label]}, Predicted Label = {dataset.classes[predicted_label]}")
 

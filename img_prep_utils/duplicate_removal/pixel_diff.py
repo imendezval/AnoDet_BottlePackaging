@@ -1,7 +1,12 @@
+"""
+Showcases how the "remove_dups" function in the util_functions/img_prep file works:
+it takes and displays 2 images, computes the difference between them using the proposed
+pixel-based algorithm, and displays a third image clearly showing the result of 
+the algorithm (changed pixels).
+"""
+
 import numpy as np
-from PIL import Image
 import matplotlib.pyplot as plt
-from sklearn.cluster import DBSCAN
 import cv2
 
 def mark_pixel_differences(grayscale1, grayscale2, diff_threshold=25, **kwargs):

@@ -1,3 +1,8 @@
+"""
+Explores different clustering methods, to identify which is best for this particular
+task.
+"""
+
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans, DBSCAN

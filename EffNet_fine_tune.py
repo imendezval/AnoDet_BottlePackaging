@@ -1,3 +1,17 @@
+"""
+Image Classification Training Script using EfficientNetV2-S
+
+This script trains an image classification model using EfficientNetV2-S with a 
+custom classifier head. It includes:
+- Data loading and transformation using PyTorch's `torchvision` module.
+- Class-weighted loss function to handle class imbalances.
+- Layer freezing and gradual unfreezing for transfer learning.
+- Variable learning rates for different parts of the model.
+- Training loop with accuracy evaluation and checkpoint saving.
+
+Hyperparameters, dataset paths, and model settings can be customized.
+"""
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -9,7 +23,7 @@ import matplotlib.pyplot as plt
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-
+# Checking for GPU
 DEVICE = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 print(torch.cuda.is_available())
 print(DEVICE)
@@ -110,6 +124,20 @@ def unfreeze_layers(model, num_layers_to_unfreeze):
     
 
 def train(model, criterion, optimizer, epochs, train_loader, test_loader, unfreeze_schedule):
+    """
+    Trains the model with the given parameters.
+    
+    Parameters:
+    - model: The neural network model
+    - criterion: Loss function
+    - optimizer: Optimizer for training
+    - epochs: Number of training epochs
+    - train_loader: DataLoader for training data
+    - test_loader: DataLoader for test data
+    - unfreeze_schedule: Dictionary specifying which layers to unfreeze at which epoch
+    
+    Saves model checkpoints and plots loss and accuracy at certain epochs.
+    """
     print("# ### TRAIN")
     model.train()
     train_losses = []
@@ -117,14 +145,12 @@ def train(model, criterion, optimizer, epochs, train_loader, test_loader, unfree
     test_accuracies = []
 
     for epoch in range(epochs):
-
         # Gradually unfreeze layers
         if epoch in unfreeze_schedule:
             num_layers_to_unfreeze = unfreeze_schedule[epoch]
             print(f"Epoch {epoch + 1}: Unfreezing {num_layers_to_unfreeze} layers.")
             unfreeze_layers(model, num_layers_to_unfreeze)
         
-
         total_loss = 0
         correct_train = 0
         total_train = 0
@@ -148,22 +174,19 @@ def train(model, criterion, optimizer, epochs, train_loader, test_loader, unfree
         avg_loss = total_loss / len(train_loader)
         train_losses.append(avg_loss)
 
-
-        #train_accuracy = correct_train / total_train
-        #train_accuracies.append(train_accuracy)
-
         model.eval()
         train_accuracy = evaluate_accuracy(model, train_loader)
+        # train_accuracy = correct_train / total_train
         train_accuracies.append(train_accuracy)
         test_accuracy = evaluate_accuracy(model, test_loader)
         test_accuracies.append(test_accuracy)
         model.train()
 
-
         if epoch % 5 == 0 or epoch == epochs - 1:
             print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}")
 
-        if epoch % 5 == 0:  # Save every 10 epochs
+        # Save checkpoints every 5 epochs
+        if epoch % 5 == 0:  
             torch.save(model.state_dict(), f"checkpoint_epoch_{epoch}.pth")
             print(f"Checkpoint saved at epoch {epoch}")
             # Plot training loss
@@ -213,6 +236,16 @@ def train(model, criterion, optimizer, epochs, train_loader, test_loader, unfree
 
 
 def evaluate_accuracy(model, data_loader):
+    """
+    Evaluates the accuracy of the model on a given dataset.
+    
+    Parameters:
+    - model: The neural network model
+    - data_loader: DataLoader for evaluation
+    
+    Returns:
+    - accuracy: Float value representing accuracy on the dataset
+    """
     correct = 0
     total = 0
 

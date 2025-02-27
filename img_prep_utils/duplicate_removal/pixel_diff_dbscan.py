@@ -1,3 +1,11 @@
+"""
+Explores a possibility to handle an exception encountered when removing duplicates 
+using the pixel-based algorithm, where small camera movements cause most pixels to
+be marked as changed pixels. However, they appear throughout the image distributed
+as noise, so this script uses DBSCAN clustering to identify which changed pixels
+correspond to a moved bottle.
+"""
+
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -52,21 +60,8 @@ def mark_pixel_differences(img1, img2, diff_threshold=25, **kwargs):
 image1 = np.array(Image.open("C:/data/git/repo/Bottle_AnoDet/imgs/masked/fallen_after/fallen_after_masked_0258.jpg").convert('L'))  # Grayscale
 image2 = np.array(Image.open("C:/data/git/repo/Bottle_AnoDet/imgs/masked/fallen_after/fallen_after_masked_0259.jpg").convert('L'))  # Grayscale
 
-
-"""
-img1 = cv2.imread(image1_path)
-img2 = cv2.imread(image2_path)
-
-# Convert to grayscale for pixel-wise comparison
-gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-
-# Compute the absolute difference
-diff = cv2.absdiff(gray1, gray2)
-"""
 # Mark pixel differences
 diff_image, clustered_image = mark_pixel_differences(image1, image2, diff_threshold=25)
-
 
 
 # Display the result

@@ -1,3 +1,23 @@
+"""
+Video Frame Extraction, Duplicate Removal, and Image Preprocessing for Anomaly Detection
+
+This script performs the following tasks:
+1. Extracts frames from videos at a specified FPS and saves them as images.
+2. Removes duplicate or nearly identical frames based on pixel change thresholds.
+3. Crops and applies a mask to images for preprocessing before anomaly detection.
+
+Functions:
+- `extract_frames(video_folder, output_folder, fps)`: Extracts frames from videos.
+- `remove_dups(folder_path, threshold)`: Removes duplicate frames based on pixel change.
+- `crop_mask_imgs(input_folder, output_folder)`: Crops and masks images for processing.
+
+Dependencies:
+- OpenCV (cv2) for video and image manipulation.
+- PIL (Pillow) for image handling.
+- NumPy for numerical operations.
+- shutil for file handling.
+"""
+
 import cv2
 import os
 from PIL import Image
@@ -61,6 +81,16 @@ def extract_frames(video_folder, output_folder, fps=24):
 
 
 def remove_dups(folder_path, threshold=0.01):
+    """
+    Removes duplicate or nearly identical images in a folder based on pixel change threshold.
+
+    Parameters:
+    - folder_path (str): Path to the folder containing images.
+    - threshold (float, optional): Minimum fraction of pixel changes required to keep an image. Default is 0.01.
+
+    Returns:
+    - None
+    """
     non_dupe_folder = os.path.join(folder_path, "unique_imgs")
     os.makedirs(non_dupe_folder, exist_ok=True)
 
@@ -95,7 +125,17 @@ def remove_dups(folder_path, threshold=0.01):
 
 
 def crop_mask_imgs(input_folder, output_folder):
+    """
+    Crops and applies a mask to images for anomaly detection preprocessing.
 
+    Parameters:
+    - input_folder (str): Path to the folder containing raw images.
+    - output_folder (str): Path to the folder to save cropped and masked images.
+
+    Returns:
+    - masked_img (numpy.ndarray): The last processed masked image (for debugging/visualization).
+    """
+    
     mask = cv2.imread("C:/data/git/repo/Bottle_AnoDet/imgs/bin_mask_opt.jpg")
     roi = [525, 215, 150, 400]
 

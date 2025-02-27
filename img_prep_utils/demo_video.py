@@ -1,8 +1,14 @@
+"""
+Demo video creator from recorded footage using trained EfficientNetV2-S model
+
+This script takes a recorded video from the camera, and outputs a demo of the 
+live classification using a trained EfficientNetV2-S model, clearly showcasing 
+how anomalies are classified, and how the cropping and masking are applied.
+"""
 import cv2
-import numpy as np
 
 # Input and output video files
-input_video = "output_model6.mp4"
+input_video = "recorded_video.mp4"
 output_video = "output_edit.mp4"
 
 # Parameters

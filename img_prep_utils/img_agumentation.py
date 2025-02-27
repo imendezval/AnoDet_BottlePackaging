@@ -1,3 +1,26 @@
+"""
+Image Augmentation with Brightness and Contrast Adjustments.
+
+This script was specifically created to augument the instance where the
+conveyor belt is empty - since only 40 instances where found in the  
+>6000 image dataset, even though it is the most common instance by far.
+It works for all other images too.
+
+This script performs the following tasks:
+1. Reads images from an input folder.
+2. Generates multiple augmented versions of each image by randomly adjusting brightness and contrast.
+3. Reapplies the mask to the augmented images, since black region is affected
+4. Saves the augmented images into an output folder.
+
+Functions:
+- `adjust_brightness_contrast(image, alpha, beta)`: Adjusts brightness and contrast of an image.
+
+Dependencies:
+- OpenCV (cv2) for image processing.
+- NumPy for numerical operations.
+- OS for file management.
+"""
+
 import os
 import cv2
 import numpy as np
