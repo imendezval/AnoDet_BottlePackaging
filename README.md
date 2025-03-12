@@ -11,40 +11,63 @@ A real-time anomaly detection project from an RTSP camera feed, featuring a pre-
 5. [Contact](#contact)
 
 ## Overview
-The Bottle_AnoDet project is designed for real-time anomaly detection of live footage of a production chain located at the Hochschule Heilbronn laboratory, using an RTSP camera feed: a pre-trained model is loaded, frames are captured and preprocessed through region-of-interest cropping and masking, and real-time inference is the performed. 
+The Bottle_AnoDet project is designed for real-time anomaly detection of live footage of a production chain located at the Hochschule Heilbronn laboratory, using an RTSP camera feed: a pre-trained model is loaded, frames are captured and preprocessed through region-of-interest cropping and masking, and real-time inference is the performed.
+
 Additionally, the project includes the whole dataset, and all the files used to preprocess and prepare the recollected images for input to the network, as well as the training files of the image classification model, using EfficientNetV2-S pretrained on ImageNet, and the testing files, evaluating its performance based on class-wise accuracy and displaying misclassified images.
 
 ## Installation
 To install the project, follow these steps:
 ```bash
+# Clone repository
+git clone https://github.com/asumak2003/Bottle_AnoDet
 # Install Python and necessary libraries
 pip install -r "requirements.txt"
 ```
-Make sure to install the required libraries from the requirements file, such as PyTorch and Torchvision, to run the project.
+Make sure to install the necessary libraries from the requirements file, such as PyTorch and Torchvision, to run the project.
 
 ## Structure
 Below, the structure of the repository is represented as a tree diagram. It is worth noting that not all files are displayed, only the most essential ones that are actually required for the mantainance and further development of the project.
 
 Bottle_AnoDet
+
 ├───EffNet_fine_tune.py
+
 ├───EffNet_test.py
+
 ├───scratch_model.py
+
 ├───live_classification.py
+
 ├───models
+
 ├───imgs
+
 │   ├───bin_mask_opt.jpg
+
 │   ├───data_loader
+
 │   │   ├───fallen_after
+
 │   │   ├───fallen_before
+
 │   │   ├───no_anomaly
+
 │   │   └───no_deckel
+
 │   └───empty_rail
+
 │       └───augumented
+
 ├───img_prep_utils
+
 │   ├───img_agumentation.py
+
 │   ├───img_prep.py
+
 │   └───duplicate_removal
+
 └───wrong_screwed_lid
+
     └───data
 
 ## Usage
