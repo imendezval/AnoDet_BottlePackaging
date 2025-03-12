@@ -28,47 +28,29 @@ Make sure to install the necessary libraries from the requirements file, such as
 ## Structure
 Below, the structure of the repository is represented as a tree diagram. It is worth noting that not all files are displayed, only the most essential ones that are actually required for the mantainance and further development of the project.
 
+```bash
 Bottle_AnoDet
-
 ├───EffNet_fine_tune.py
-
 ├───EffNet_test.py
-
 ├───scratch_model.py
-
 ├───live_classification.py
-
 ├───models
-
 ├───imgs
-
 │   ├───bin_mask_opt.jpg
-
 │   ├───data_loader
-
 │   │   ├───fallen_after
-
 │   │   ├───fallen_before
-
 │   │   ├───no_anomaly
-
 │   │   └───no_deckel
-
 │   └───empty_rail
-
 │       └───augumented
-
 ├───img_prep_utils
-
 │   ├───img_agumentation.py
-
 │   ├───img_prep.py
-
 │   └───duplicate_removal
-
 └───wrong_screwed_lid
-
     └───data
+```
 
 ## Usage
 
