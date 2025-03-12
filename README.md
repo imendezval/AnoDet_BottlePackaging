@@ -11,9 +11,15 @@ A real-time anomaly detection project from an RTSP camera feed, featuring a pre-
 5. [Contact](#contact)
 
 ## Overview
-The Bottle_AnoDet project is designed for real-time anomaly detection of live footage of a production chain located at the Hochschule Heilbronn laboratory, using an RTSP camera feed: a pre-trained model is loaded, frames are captured and preprocessed through region-of-interest cropping and masking, and real-time inference is the performed.
+The Bottle_AnoDet project is designed for real-time anomaly detection of live footage of a production chain located at the Hochschule Heilbronn laboratory, using an RTSP camera feed: a pre-trained model is loaded, frames are captured and preprocessed through region-of-interest cropping and masking, and real-time inference is then performed.
 
-Additionally, the project includes the whole dataset, and all the files used to preprocess and prepare the recollected images for input to the network, as well as the training files of the image classification model, using EfficientNetV2-S pretrained on ImageNet, and the testing files, evaluating its performance based on class-wise accuracy and displaying misclassified images.
+![alt text](https://github.com/asumak2003/Bottle_AnoDet/tree/main/imgs/exs/production_chain_labeled.png "Logo Title Text 1")
+
+Additionally, this repository also includes the whole used for training dataset, and all the files used to preprocess and prepare the recollected images for input to the network, as well as the training files of the image classification model, using EfficientNetV2-S pretrained on ImageNet, and the testing files, evaluating its performance based on class-wise accuracy and displaying misclassified images.
+
+The objective is to detect anomalies in the production chain, and classify them into one of 4 classes:
+
+![alt text](https://github.com/asumak2003/Bottle_AnoDet/tree/main/imgs/exs/classes.png "Logo Title Text 1")
 
 ## Installation
 To install the project, follow these steps:
@@ -59,18 +65,27 @@ In the main folder, the files used for the training and testing and usage of the
 + The [scratch_model.py](./scratch_model.py) file simply showcases an attempt to train a model from scratch on our data. 
 + The file [EffNet_fine_tune.py](./EffNet_fine_tune.py) is the main responsible for fine tuning the EfficientNet model, pretrained on ImageNet, on our dataset. It outputs a model and multiple graphs displaying the progress of the model during training. 
 + The output model can then be tested using [EffNet_test.py](./EffNet_test.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis.
-+ The file [live_classification.py](./live_classification.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. The user can exit the live video feed by pressing 'q'.
++ The file [live_classification.py](./live_classification.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. The user can exit the live video feed by pressing 'q'. A screenshot of the final prototype can be seen below:
+
+![alt text](https://github.com/asumak2003/Bottle_AnoDet/tree/main/imgs/exs/prototype.jpg "Logo Title Text 1")
 
 #### Dataset and Image Preprocessing
 Under the [imgs](./imgs/) folder, one may find the binary mask, augumented images, and the dataset (organised according to the requirements of the the PyTorch DataLoader function).
 
 All files responsible for the preprocessing of images, mainly used to prepare images to be added to the dataset, are found under the [img_prep_utils](./img_prep_utils/) folder:
-+ The [img_prep.py](./img_prep_utils/img_prep.py) file has multiple useful functions, including the sampling of videos, cropping and masking of images and duplicate removal. 
+
 + The [img_agumentation.py](./img_prep_utils/img_agumentation.py) file is used to create augumented images using brightness and contrast changes. 
 + Furthermore, the [duplicate_removal](./img_prep_utils/duplicate_removal/) folder has multiple files showcasing the different techniques explored for removing duplicated frames, where there has been no changes in the production chain from one image to the other.
++ The [img_prep.py](./img_prep_utils/img_prep.py) file has multiple useful functions, including the sampling of videos, cropping and masking of images and duplicate removal. Below, the workflow of the cropping and masking can be observed:
+
+![alt text](https://github.com/asumak2003/Bottle_AnoDet/tree/main/imgs/exs/crop_and_mask.png "Logo Title Text 1")
 
 #### Wrongly Screwed Lid
-Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempting to detect when a lid has been misplaced can be found. Using a lot of data, it was concluded that this was not possible with our current equipment. The analysis of the collected data can be found under the [data](./wrong_screwed_lid/data/) folder.
+Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempting to detect when a lid has been misplaced can be found. Many different techniques were explored in an attempt to to detect this instance. The first step was always to detect the circumference of both the inner and outer ellipses of the lid of the bottle, and then multiple features were analysed, including but not limited to: the total area of the ellipse in the image, the eccentricity of the ellipse, the angle between the major and minor axis of the ellipse...
+
+![alt text](https://github.com/asumak2003/Bottle_AnoDet/tree/main/imgs/exs/wrong_screwed_lid.png "Logo Title Text 1")
+
+Using a lot of data, it was concluded that this was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The analysis performed on the collected data can be found under the [data](./wrong_screwed_lid/data/) folder.
 
 
 ## Contact
