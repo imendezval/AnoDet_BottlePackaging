@@ -1,7 +1,7 @@
 # Bottle_AnoDet
 A real-time anomaly detection project from an RTSP camera feed, featuring a pre-trained model and image classification using EfficientNetV2-S.
 
-<img src="https://skillicons.dev/icons?i=python" /><img src="https://skillicons.dev/icons?i=pytorch" />
+<img src="https://skillicons.dev/icons?i=python" /> <img src="https://skillicons.dev/icons?i=pytorch" />
 
 ## Table of contents
 1. [Overview](#overview)
