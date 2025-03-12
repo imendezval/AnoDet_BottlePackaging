@@ -13,7 +13,10 @@ A real-time anomaly detection project from an RTSP camera feed, featuring a pre-
 ## Overview
 The Bottle_AnoDet project is designed for real-time anomaly detection of live footage of a production chain located at the Hochschule Heilbronn laboratory, using an RTSP camera feed: a pre-trained model is loaded, frames are captured and preprocessed through region-of-interest cropping and masking, and real-time inference is then performed. A labeled image of the production chain can be seen below
 
-![alt text](https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/Production_chain_labeled.png "Logo Title Text 1")
+
+<div align="center">
+  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/production_chain.png">
+</div>
 
 Additionally, this repository also includes the whole used for training dataset, and all the files used to preprocess and prepare the recollected images for input to the network, as well as the training files of the image classification model, using EfficientNetV2-S pretrained on ImageNet, and the testing files, evaluating its performance based on class-wise accuracy and displaying misclassified images.
 
