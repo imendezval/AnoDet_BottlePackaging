@@ -1,13 +1,13 @@
 # Bottle_AnoDet
 A real-time anomaly detection project from an RTSP camera feed, featuring a pre-trained model and image classification using EfficientNetV2-S.
 
-<img src="https://skillicons.dev/icons?i=python" />
+<img src="https://skillicons.dev/icons?i=python" /><img src="https://skillicons.dev/icons?i=pytorch" />
 
 ## Table of contents
 1. [Overview](#overview)
 2. [Installation](#installation)
-3. [Structure and Usage](#structureandusage)
-4. [License](#license)
+3. [Structure and Usage](#structure)
+4. [Usage](#usage)
 5. [Contact](#contact)
 
 ## Overview
@@ -22,7 +22,7 @@ pip install -r "requirements.txt"
 ```
 Make sure to install the required libraries from the requirements file, such as PyTorch and Torchvision, to run the project.
 
-## Structure and Usage
+## Structure
 Below, the structure of the repository is represented as a tree diagram. It is worth noting that not all files are displayed, only the most essential ones that are actually required for the mantainance and further development of the project.
 
 Bottle_AnoDet
@@ -47,14 +47,16 @@ Bottle_AnoDet
 └───wrong_screwed_lid
     └───data
 
-### Main Files
+## Usage
+
+#### Main Files
 In the main folder, the files used for the training and testing and usage of the EfficientNet model can be found.
 + The [scratch_model.py](./scratch_model.py) file simply showcases an attempt to train a model from scratch on our data. 
 + The file [EffNet_fine_tune.py](./EffNet_fine_tune.py) is the main responsible for fine tuning the EfficientNet model, pretrained on ImageNet, on our dataset. It outputs a model and multiple graphs displaying the progress of the model during training. 
 + The output model can then be tested using [EffNet_test.py](./EffNet_test.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis.
 + The file [live_classification.py](./live_classification.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. The user can exit the live video feed by pressing 'q'.
 
-### Dataset and Image Preprocessing
+#### Dataset and Image Preprocessing
 Under the [imgs](./imgs/) folder, one may find the binary mask, augumented images, and the dataset (organised according to the requirements of the the PyTorch DataLoader function).
 
 All files responsible for the preprocessing of images, mainly used to prepare images to be added to the dataset, are found under the [img_prep_utils](./img_prep_utils/) folder:
@@ -62,7 +64,7 @@ All files responsible for the preprocessing of images, mainly used to prepare im
 + The [img_agumentation.py](./img_prep_utils/img_agumentation.py) file is used to create augumented images using brightness and contrast changes. 
 + Furthermore, the [duplicate_removal](./img_prep_utils/duplicate_removal/) folder has multiple files showcasing the different techniques explored for removing duplicated frames, where there has been no changes in the production chain from one image to the other.
 
-### Wrongly Screwed Lid
+#### Wrongly Screwed Lid
 Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempting to detect when a lid has been misplaced can be found. Using a lot of data, it was concluded that this was not possible with our current equipment. The analysis of the collected data can be found under the [data](./wrong_screwed_lid/data/) folder.
 
 
