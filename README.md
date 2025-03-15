@@ -37,7 +37,8 @@ pip install -r "requirements.txt"
 ```
 Make sure to install the necessary libraries from the requirements file, such as PyTorch and Torchvision, to run the project.
 
-Apart from the above Python libraries, it is also necessary to install the FFmpeg framework to be able to run the [live_classification.py](./live_classification.py) file on the live footage of the RTSP camera. To do this:
+
+Apart from the above Python libraries, connection to the camera through a LAN cable and installation of the the FFmpeg framework are also necessary to be able to run the [live_classification.py](./live_classification.py) file on the live footage of the RTSP camera. To do this:
 
 + Go to https://www.gyan.dev/ffmpeg/builds/
 + Download "ffmpeg-git-full.7z" or "ffmpeg-release-full.7z"
@@ -105,10 +106,10 @@ Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempti
   <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/wrong_screwed_lid.png">
 </div>
 
-Using a lot of data, it was concluded that this task was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The analysis performed on the collected data can be found under the [data](./wrong_screwed_lid/data/) folder.
+Using a lot of data, it was concluded that this task was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The collected data, summarised based on different featres using graphs, can be found under the [data](./wrong_screwed_lid/data/) folder, and the analysis of these features under the [data2](./wrong_screwed_lid/data2/) folder.
 
 ## Models
-Over the course of the project, 8 different models were trained, all of which can be found under the [models](./models/) folder. It was a iterative process of tiral-and-improvement, consisting of training a model, identifying it's issues, and rectifying and retraining accordingly. For example, the imbalanced dataset resulted in much higher accuracy in classes with more images, and therefore a class-weighted loss was implemented.
+Over the course of the project, 8 different models were trained, all of which can be found under the [models](./models/) folder. It was a iterative process of tiral-and-improvement, consisting of training a model, identifying it's issues, and rectifying and retraining accordingly. For example, the imbalanced dataset resulted in a much higher accuracy in classes with more images, and therefore a class-weighted loss was implemented.
 
 In a later stage of the development process, it was discovered that, although the camera could save images in a 1280x720 resolution, the live footage was limited to 640x368. At this point, the whole dataset had already been collected with a 1280x720 resolution, so another model had to be trained adjusting the resolution at the input.
 
