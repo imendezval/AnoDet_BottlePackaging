@@ -10,6 +10,7 @@ A real-time anomaly detection project from an RTSP live camera feed, featuring a
   </a>
 </div>
 
+
 ## Table of contents
 1. [Overview](#overview)
 2. [Installation](#installation)
