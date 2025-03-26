@@ -24,7 +24,7 @@ The Bottle_AnoDet project is designed for real-time anomaly detection of live fo
 
 
 <div align="center">
-  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/production_chain.png">
+  <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/production_chain.png">
 </div>
 
 Additionally, this repository also includes the whole used for training dataset, and all the files used to preprocess and prepare the recollected images for input to the network, as well as the training files of the image classification model, using EfficientNetV2-S pretrained on ImageNet and a class-weighted loss, and the testing files, evaluating its performance based on class-wise accuracy and displaying misclassified images.
@@ -32,14 +32,14 @@ Additionally, this repository also includes the whole used for training dataset,
 The objective is to detect anomalies in the production chain, and classify them into one of 4 classes: no anomaly, no lid, fallen before and fallen after (the corner).
 
 <div align="center">
-  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/classes.png">
+  <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/classes.png">
 </div>
 
 ## Installation
 To install the project, follow these steps:
 ```bash
 # Clone repository
-git clone https://github.com/asumak2003/Bottle_AnoDet
+git clone https://github.com/imendezval/AnoDet_BottlePackaging
 # Install Python and necessary libraries
 pip install -r "requirements.txt"
 ```
@@ -90,7 +90,7 @@ In the main folder, the files used for the training and testing and usage of the
 + The file [live_classification.py](./live_classification.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. An aditional algorithm runs on top of the model, only outputting an error signal upon detection of an anomaly in 5 consecutive frames, reducing false positives greatly. The user can exit the live video feed by pressing 'q'. A screenshot of the final prototype can be seen below:
 
 <div align="center">
-  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/prototype.jpg">
+  <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/prototype.jpg">
 </div>
 
 #### Dataset and Image Preprocessing
@@ -103,7 +103,7 @@ All files responsible for the preprocessing of images, mainly used to prepare im
 + The [img_prep.py](./img_prep_utils/img_prep.py) file has multiple useful functions, including the sampling of videos, cropping and masking of images and duplicate removal. Below, the workflow of the cropping and masking can be observed:
 
 <div align="center">
-  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/crop_and_mask.png">
+  <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/crop_and_mask.png">
 </div>
 
 
@@ -111,7 +111,7 @@ All files responsible for the preprocessing of images, mainly used to prepare im
 Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempting to detect when a lid has been misplaced can be found. Many different techniques were explored in an attempt to to detect this instance. The first step was always to detect the circumference of both the inner and outer ellipses of the lid of the bottle, and then multiple features were analysed, including but not limited to: the total area of the ellipse in the image, the eccentricity of the ellipse, the angle between the major and minor axis of the ellipse...
 
 <div align="center">
-  <img src="https://github.com/asumak2003/Bottle_AnoDet/raw/main/imgs/exs/wrong_screwed_lid.png">
+  <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/wrong_screwed_lid.png">
 </div>
 
 Using a lot of data, it was concluded that this task was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The collected data, summarised based on different featres using graphs, can be found under the [data](./wrong_screwed_lid/data/) folder, and the analysis of these features under the [data2](./wrong_screwed_lid/data2/) folder.
