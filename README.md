@@ -11,6 +11,8 @@ Click on the video below for a Demo!
   </a>
 </div>
 
+
+## Jetson Nano integration
 This was the basis for a bigger project, consisting of running the whole anomaly detection pipeline on a Jetson Nano microcontroller. In the end, the Jetson Nano: 
 + Directly interacted with the production chain to stop / start it upon anomaly detection
 + Served a Web-Server for remote supervision and interaction with both the production chain and the anomaly detection pipeline
