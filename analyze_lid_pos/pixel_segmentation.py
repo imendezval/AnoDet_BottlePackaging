@@ -25,8 +25,6 @@ diff_image, masked_img = pixel_above_thresh(img, grauwerte_threshold=150)
 
 
 
-
-
 # Display the result
 plt.figure(figsize=(15, 5))
 plt.subplot(1, 2, 1)

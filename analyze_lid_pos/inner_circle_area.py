@@ -39,8 +39,6 @@ def calculate_ellipse_area(ellipse):
     # Semi-major and semi-minor axes
     a = major_axis / 2
     b = minor_axis / 2
-    #print(f"A:{a}")
-    #print(f"B:{b}")
 
     # Calculate ellipse area
     area = np.pi * a * b
@@ -139,8 +137,8 @@ def find_area(filename):
 
 well_placed = "imgs/sampled/wrong_lid/crop/nd_0018.jpg"
 
-miss_1 = "imgs/sampled/wrong_lid/crop/nd_0054.jpg"
-miss_2 = "imgs/sampled/wrong_lid/crop/nd_0096.jpg"
-miss_3 = "imgs/sampled/wrong_lid/crop/nd_0132.jpg"
+wrong_screwed_1 = "imgs/sampled/wrong_lid/crop/nd_0054.jpg"
+wrong_screwed_2 = "imgs/sampled/wrong_lid/crop/nd_0096.jpg"
+wrong_screwed_3 = "imgs/sampled/wrong_lid/crop/nd_0132.jpg"
 
 find_area(well_placed)

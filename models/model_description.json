@@ -1,0 +1,65 @@
+{
+  "model2": {
+    "optimizer": "Adam",
+    "lr_classifier": "2e-4",
+    "lr_feature": "-",
+    "unfreeze": "No",
+    "weighted_loss": "No",
+    "resolution": "1280x720",
+    "notes": "-"
+  },
+  "model3": {
+    "optimizer": "Adam",
+    "lr_classifier": "2e-4",
+    "lr_feature": "-",
+    "unfreeze": "Classifier",
+    "weighted_loss": "No",
+    "resolution": "1280x720",
+    "notes": "-"
+  },
+  "model4": {
+    "optimizer": "Adam",
+    "lr_classifier": "1.5e-4",
+    "lr_feature": "-",
+    "unfreeze": "Classifier",
+    "weighted_loss": "No",
+    "resolution": "1280x720",
+    "notes": "-"
+  },
+  "model5": {
+    "optimizer": "AdamW",
+    "lr_classifier": "1.5e-4",
+    "lr_feature": "-",
+    "unfreeze": "Classifier",
+    "weighted_loss": "No",
+    "resolution": "1280x720",
+    "notes": "-"
+  },
+  "model6": {
+    "optimizer": "AdamW",
+    "lr_classifier": "1.5e-4",
+    "lr_feature": "5e-6",
+    "unfreeze": "Classifier + blocks 6-7",
+    "weighted_loss": "Yes",
+    "resolution": "1280x720",
+    "notes": "-"
+  },
+  "model7": {
+    "optimizer": "AdamW",
+    "lr_classifier": "1.5e-4",
+    "lr_feature": "5e-6",
+    "unfreeze": "Classifier + blocks 6-7",
+    "weighted_loss": "Yes",
+    "resolution": "640x368",
+    "notes": "-"
+  },
+  "model8": {
+    "optimizer": "AdamW",
+    "lr_classifier": "1.5e-4",
+    "lr_feature": "5e-6",
+    "unfreeze": "Classifier + blocks 6-7",
+    "weighted_loss": "Yes",
+    "resolution": "640x368",
+    "notes": "Image Augumentation of empty rail case"
+  }
+}

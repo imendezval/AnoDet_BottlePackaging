@@ -129,23 +129,3 @@ for filename in os.listdir(input_folder):
 df = pd.DataFrame(data)
 output_path = "C:/data/git/repo/Bottle_AnoDet/inner_circle_df.xlsx"
 df.to_excel(output_path, index=False)
-"""
-
-file_name1 = "imgs/sampled/wrong_lid/crop/nd_0018.jpg"
-file_name2 = "imgs/sampled/wrong_lid/crop/nd_0019.jpg"
-file_name3 = "imgs/sampled/wrong_lid/crop/nd_0020.jpg"
-file_name4 = "imgs/sampled/wrong_lid/crop/nd_0021.jpg"
-file_name5 = "imgs/sampled/wrong_lid/crop/nd_0022.jpg"
-file_name6 = "imgs/sampled/wrong_lid/crop/nd_0054.jpg"
-file_name7 = "imgs/sampled/wrong_lid/crop/nd_0096.jpg"
-file_name8 = "imgs/sampled/wrong_lid/crop/nd_0132.jpg"
-
-find_area(file_name1)
-find_area(file_name2)
-find_area(file_name3)
-find_area(file_name4)
-find_area(file_name5)
-find_area(file_name6)
-find_area(file_name7)
-find_area(file_name8)
-"""
