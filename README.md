@@ -13,7 +13,7 @@ Click on the video below for a Demo!
 
 
 ## Jetson Nano integration
-This was the basis for a bigger project, consisting of running the whole anomaly detection pipeline on a Jetson Nano microcontroller. In the end, the Jetson Nano: 
+This was the ML basis for a bigger project, consisting of running the whole anomaly detection pipeline on a Jetson Nano microcontroller. In the end, the Jetson Nano: 
 + Directly interacted with the production chain to stop / start it upon anomaly detection
 + Served a Web-Server for remote supervision and interaction with both the production chain and the anomaly detection pipeline
 
@@ -170,9 +170,9 @@ Below is a table summarising some of the models and their performance:
 | Model Nr.     | Unfrozen Layers| Resolution|Epochs| Class-weighted Loss| Accuracy|
 |:-------------:|:-------------:|:----------:|:----:|:------------------:|:-------:|
 |4              | Classification| 1280x720|50| No| 90.8%|
-| 5             | Classification and Blocks  6 + 7| 1280x720|15| No| 98.8%|
-|6              | Classification and Blocks  6 + 7| 1280x720|15| Yes| 99.7%|
-| 8             | Classification and Blocks  6 + 7| 640x368|15| Yes| 99.4%|
+| 5             | Classification and Blocks 6+7| 1280x720|15| No| 98.8%|
+|6              | Classification and Blocks 6+7| 1280x720|15| Yes| 99.7%|
+| 8             | Classification and Blocks 6+7| 640x368|15| Yes| 99.4%|
 
 ## Contact
 For any questions or feedback, please reach out to:
