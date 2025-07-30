@@ -3,6 +3,7 @@ A real-time anomaly detection project from an RTSP live camera feed, featuring a
 
 <img src="https://skillicons.dev/icons?i=python" /> <img src="https://skillicons.dev/icons?i=pytorch" />
 
+Click on the video below for a Demo!
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=M6jQrehibDQ&ab_channel=M3NDEZ">
@@ -46,7 +47,7 @@ pip install -r "requirements.txt"
 Make sure to install the necessary libraries from the requirements file, such as PyTorch and Torchvision, to run the project.
 
 
-Apart from the above Python libraries, connection to the camera through a LAN cable and installation of the the FFmpeg framework are also necessary to be able to run the [live_classification.py](./live_classification.py) file on the live footage of the RTSP camera. To do this:
+Apart from the above Python libraries, connection to the camera through a LAN cable and installation of the the FFmpeg framework are also necessary to be able to run the [live_anomaly_detector.py](./live_anomaly_detector.py) file on the live footage of the RTSP camera. To do this:
 
 + Go to https://www.gyan.dev/ffmpeg/builds/
 + Download "ffmpeg-git-full.7z" or "ffmpeg-release-full.7z"
@@ -85,9 +86,33 @@ Bottle_AnoDet
 #### Main Files
 In the main folder, the files used for the training and testing and usage of the EfficientNet model can be found.
 + The [scratch_model.py](./scratch_model.py) file simply showcases an attempt to train a model from scratch on our data. 
-+ The file [EffNet_fine_tune.py](./EffNet_fine_tune.py) is the main responsible for fine tuning the EfficientNet model, pretrained on ImageNet, on our dataset. It outputs a model and multiple graphs displaying the progress of the model during training. 
-+ The output model can then be tested using [EffNet_test.py](./EffNet_test.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis.
-+ The file [live_classification.py](./live_classification.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. An aditional algorithm runs on top of the model, only outputting an error signal upon detection of an anomaly in 5 consecutive frames, reducing false positives greatly. The user can exit the live video feed by pressing 'q'. A screenshot of the final prototype can be seen below:
++ The file [model_fine_tune.py](./model_fine_tune.py) is the main responsible for fine tuning the EfficientNet model, pretrained on ImageNet, on our dataset. It outputs a model and multiple graphs displaying the progress of the model during training. Run tool with:
+```bash
+python model_fine_tune.py \
+  --data-dir ./imgs/data_loader \
+  --batch-size 32 \
+  --epochs 25 \
+  --lr-feature 1e-5 \
+  --lr-classifier 1e-4 \
+  --unfreeze-schedule 0:2,10:4,15:8
+```
++ The output model can then be tested using [model_analyze.py](./model_analyze.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis.
+```bash
+python model_analyze.py \
+  --model-path models/model7/model7.pth \
+  --data-dir ./imgs/data_loader \
+  --num-classes 4 \
+  --batch-size 20 \
+  --save-dir ./misclassified
+```
++ The file [live_anomaly_detector.py](./live_anomaly_detector.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. An aditional algorithm runs on top of the model, only outputting an error signal upon detection of an anomaly in 5 consecutive frames, reducing false positives greatly. The user can exit the live video feed by pressing 'q'. A screenshot of the final prototype can be seen below:
+```bash
+python live_anomaly_detector.py \
+  --model-path models/model7/model7.pth \
+  --rtsp-url rtsp://192.168.60.101:8554/ \
+  --mask-path imgs/bin_mask_opt.jpg \
+  --num-classes 4
+```
 
 <div align="center">
   <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/prototype.jpg">
@@ -96,11 +121,11 @@ In the main folder, the files used for the training and testing and usage of the
 #### Dataset and Image Preprocessing
 Under the [imgs](./imgs/) folder, one may find the binary mask, augumented images, and the dataset (organised according to the requirements of the the PyTorch DataLoader function).
 
-All files responsible for the preprocessing of images, mainly used to prepare images to be added to the dataset, are found under the [img_prep_utils](./img_prep_utils/) folder:
+All files responsible for the preprocessing of images, mainly used to prepare images to be added to the dataset, are found under the [tools_img_prep](./tools_img_prep/) folder:
 
-+ The [img_agumentation.py](./img_prep_utils/img_agumentation.py) file is used to create augumented images using brightness and contrast changes. 
-+ Furthermore, the [duplicate_removal](./img_prep_utils/duplicate_removal/) folder has multiple files showcasing the different techniques explored for removing duplicated frames, where there has been no changes in the production chain from one image to the other.
-+ The [img_prep.py](./img_prep_utils/img_prep.py) file has multiple useful functions, including the sampling of videos, cropping and masking of images and duplicate removal. Below, the workflow of the cropping and masking can be observed:
++ The [img_agumentation.py](./tools_img_prep/img_agumentation.py) file is used to create augumented images using brightness and contrast changes. 
++ Furthermore, the [duplicate_removal](./tools_img_prep/duplicate_removal/) folder has multiple files showcasing the different techniques explored for removing duplicated frames, where there has been no changes in the production chain from one image to the other.
++ The [img_prepping.py](./tools_img_prep/img_prepping.py) file has multiple useful functions, including the sampling of videos, cropping and masking of images and duplicate removal. Below, the workflow of the cropping and masking can be observed:
 
 <div align="center">
   <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/crop_and_mask.png">
@@ -108,13 +133,13 @@ All files responsible for the preprocessing of images, mainly used to prepare im
 
 
 #### Wrongly Screwed Lid
-Finally, in the [wrong_screwed_lid](./wrong_screwed_lid/) folder, files attempting to detect when a lid has been misplaced can be found. Many different techniques were explored in an attempt to to detect this instance. The first step was always to detect the circumference of both the inner and outer ellipses of the lid of the bottle, and then multiple features were analysed, including but not limited to: the total area of the ellipse in the image, the eccentricity of the ellipse, the angle between the major and minor axis of the ellipse...
+Finally, in the [analyze_lid_pos](./analyze_lid_pos/) folder, files attempting to detect when a lid has been misplaced can be found. Many different techniques were explored in an attempt to to detect this instance. The first step was always to detect the circumference of both the inner and outer ellipses of the lid of the bottle, and then multiple features were analysed, including but not limited to: the total area of the ellipse in the image, the eccentricity of the ellipse, the angle between the major and minor axis of the ellipse...
 
 <div align="center">
   <img src="https://github.com/imendezval/AnoDet_BottlePackaging/raw/main/imgs/exs/wrong_screwed_lid.png">
 </div>
 
-Using a lot of data, it was concluded that this task was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The collected data, summarised based on different featres using graphs, can be found under the [data](./wrong_screwed_lid/data/) folder, and the analysis of these features under the [data2](./wrong_screwed_lid/data2/) folder.
+Using a lot of data, it was concluded that this task was not possible with our current equipment. No feature could be found that separated the anomalies from the normal class. The collected data, summarised based on different featres using graphs, can be found under the [data](./analyze_lid_pos/data/) folder, and the analysis of these features under the [data2](./analyze_lid_pos/data2/) folder.
 
 ## Models
 Over the course of the project, 8 different models were trained, all of which can be found under the [models](./models/) folder. It was a iterative process of tiral-and-improvement, consisting of training a model, identifying it's issues, and rectifying and retraining accordingly. For example, the imbalanced dataset resulted in a much higher accuracy in classes with more images, and therefore a class-weighted loss was implemented.
