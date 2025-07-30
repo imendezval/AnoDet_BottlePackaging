@@ -11,6 +11,23 @@ Click on the video below for a Demo!
   </a>
 </div>
 
+This was the basis for a bigger project, consisting of running the whole anomaly detection pipeline on a Jetson Nano microcontroller. In the end, the Jetson Nano: 
++ Directly interacted with the production chain to stop / start it upon anomaly detection
++ Served a Web-Server for remote supervision and interaction with both the production chain and the anomaly detection pipeline
+
+Due to how outdated the OS of the Jetson Nano was (Jetson 18.04), it could only run with python 3.6, CUDA 10.2, and therefore only with much older versions of PyTorch downloaded using custom built wheels by the NVIDIA community. 
+
+All models had been trained on a newer PyTorch version - and unfortunately all models were based on a version of EfficientNet that did not yet exist in older Torchvision (v0.11.1). To remedy this problem, the [my_models](./my_models/) folder was custom developed to bridge in between the older PyTorch / Torchvision version and the EfficientNetV2-S model.
+
+Click below for a demo of the functional prototype (a screen recorded video of the web served by the Jetson Nano while performing live anomaly detection on the production chain):
+
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=TYcP_FRS6IQ&ab_channel=M3NDEZ">
+    <img src="https://img.youtube.com/vi/TYcP_FRS6IQ/0.jpg" alt="Watch the video">
+  </a>
+</div>
+
 
 ## Table of contents
 1. [Overview](#overview)
