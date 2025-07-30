@@ -96,7 +96,7 @@ python model_fine_tune.py \
   --lr-classifier 1e-4 \
   --unfreeze-schedule 0:2,10:4,15:8
 ```
-+ The output model can then be tested using [model_analyze.py](./model_analyze.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis.
++ The output model can then be tested using [model_analyze.py](./model_analyze.py), displaying test loss, overall accuracy, class-wise accuracy and misclassified images for further analysis. Run tool with:
 ```bash
 python model_analyze.py \
   --model-path models/model7/model7.pth \
@@ -105,7 +105,7 @@ python model_analyze.py \
   --batch-size 20 \
   --save-dir ./misclassified
 ```
-+ The file [live_anomaly_detector.py](./live_anomaly_detector.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. An aditional algorithm runs on top of the model, only outputting an error signal upon detection of an anomaly in 5 consecutive frames, reducing false positives greatly. The user can exit the live video feed by pressing 'q'. A screenshot of the final prototype can be seen below:
++ The file [live_anomaly_detector.py](./live_anomaly_detector.py) is used for direct inference on the live footage of the RTSP camera, by using one of the several models, found under the "models" folder. The script continuously processes frames and displays the prediction. An aditional algorithm runs on top of the model, only outputting an error signal upon detection of an anomaly in 5 consecutive frames, reducing false positives greatly. The user can exit the live video feed by pressing 'q'. An example of how it is run and a screenshot of a prototype can be seen below:
 ```bash
 python live_anomaly_detector.py \
   --model-path models/model7/model7.pth \
